@@ -1,7 +1,7 @@
 name: Build Plugin
 
 env:
-  plugin_name: HaselTweaks
+  plugin_name: BasedArtisanReleaseFix
 
 on:
   push:
@@ -10,7 +10,6 @@ on:
       - .gitattributes
       - .github/**
       - .gitignore
-      - HaselTweaks/Translations.json
       - CHANGELOG.md
       - LICENSE
       - README.md
