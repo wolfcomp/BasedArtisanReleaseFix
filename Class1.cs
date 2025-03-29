@@ -11,21 +11,34 @@ namespace BasedArtisanReleaseFix
     {
         static IDalamudPluginInterface? Instance { get; set; }
         static ICommandManager? CommandManager { get; set; }
-        public Main(IDalamudPluginInterface pluginInterface, ICommandManager commandManager)
+        static IPluginLog? Log { get; set; }
+        static IFramework? Framework { get; set; }
+        public Main(IDalamudPluginInterface pluginInterface, ICommandManager commandManager, IPluginLog log, IFramework framework)
         {
-            commandManager.AddHandler("/barf", new CommandInfo((command, arguments) => FixArtisan()));
+            commandManager.AddHandler("/barf", new CommandInfo((_, _) => FixArtisan()));
             Instance = pluginInterface;
             CommandManager = commandManager;
-            FixArtisan();
+            Log = log;
+            Framework = framework;
+            // FixArtisan();
         }
 
         private static void FixArtisan()
         {
             if (!TryGetLoadedPlugin("Artisan", out var plugin, out var localPlugin)) return;
-            var instance = localPlugin.GetType().GetField("dalamudInteface", BindingFlags.NonPublic | BindingFlags.Instance)?.GetValue(localPlugin);
+            var instance = localPlugin.GetType().GetField("dalamudInterface", BindingFlags.NonPublic | BindingFlags.Instance)?.GetValue(localPlugin);
             if (instance == null) return;
-            plugin.Dispose();
-            plugin.GetType().Assembly.GetType("DalamudInfo")?.GetField("IsStaging", BindingFlags.Static | BindingFlags.NonPublic)?.SetValue(null, false);
+            try
+            {
+                plugin.Dispose();
+            }
+            catch
+            {
+                // Ignore since Artisan doesn't handle nullables correctly.
+            }
+            var type = plugin.GetType().Assembly.GetTypes().FirstOrDefault(t => t.Name == "DalamudInfo");
+            if (type == null) Log!.Info("Failed to find DalamudInfo");
+            else type.GetField("IsStaging", BindingFlags.Static | BindingFlags.Public)?.SetValue(null, false);
             plugin.GetType().GetConstructor([instance.GetType()])?.Invoke([instance]);
         }
 

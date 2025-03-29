@@ -8,6 +8,6 @@
   "Tags": [
     "crafting"
   ],
-  "Changelog": "- Initial Release",
+  "Changelog": "- Fix binding flags",
   "RepoUrl": "https://github.com/wolfcomp/BasedArtisanReleaseFix"
 }
