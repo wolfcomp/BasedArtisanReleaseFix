@@ -40,7 +40,7 @@ jobs:
         uses: actions/setup-dotnet@v4
         with:
           cache: true
-          cache-dependency-path: ${{ env.plugin_name }}/packages.lock.json
+          cache-dependency-path: packages.lock.json
           dotnet-version: 9.0.x
 
       - name: Determine Dalamud Branch
@@ -74,7 +74,7 @@ jobs:
 
       - name: Rename manifest
         if: github.event_name != 'pull_request'
-        run: mv bin/${{ env.plugin_name }}/${{ env.plugin_name }}.json bin/${{ env.plugin_name }}/manifest.json
+        run: mv bin/${{ env.plugin_name }}.json bin/${{ env.plugin_name }}/manifest.json
 
       - name: Upload Build Artifact
         if: github.event_name != 'pull_request'
