@@ -1,0 +1,13 @@
+{
+  "Author": "WildWolf",
+  "Name": "Based Artisan Release Fix",
+  "Punchline": "A hilarious fix for Artisan.",
+  "Description": "They could just fix this issue them self but noo it's not a method they want to implement ref: https://github.com/PunishXIV/Artisan/pull/136.",
+  "InternalName": "BasedArtisanReleaseFix",
+  "ApplicableVersion": "any",
+  "Tags": [
+    "crafting"
+  ],
+  "Changelog": "- Initial Release",
+  "RepoUrl": "https://github.com/wolfcomp/BasedArtisanReleaseFix"
+}
