@@ -144,8 +144,8 @@ namespace BasedArtisanReleaseFix
 
                 pluginType.GetMethod("ConvertCraftingLists", BindingFlags.Instance | BindingFlags.NonPublic)?.Invoke(plugin, null);
 
-                Log.Info("Artisan fixed! Suck it up Taurenkey! :D");
-                Chat.Print("Artisan fixed! Suck it up Taurenkey! :D");
+                Log.Info("Artisan fixed! Suck it up Taurenkey! >:D");
+                Chat.Print("Artisan fixed! Suck it up Taurenkey! >:D");
             }
             catch (Exception ex)
             {
