@@ -53,7 +53,7 @@ namespace BasedArtisanReleaseFix
                 if (addWindow == null) throw new Exception("Failed to get AddWindow method");
                 foreach (var field in fields)
                 {
-                    if (field.Name is "UniversalisClient" or "cw")
+                    if (field.Name is "UniversalsisClient" or "cw")
                     {
                         var obj = Activator.CreateInstance(field.FieldType);
                         field.SetValue(plugin, obj);
