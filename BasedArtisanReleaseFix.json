@@ -8,6 +8,6 @@
   "Tags": [
     "crafting"
   ],
-  "Changelog": "- Now with automatic patching",
+  "Changelog": "- Fix assembly load reference",
   "RepoUrl": "https://github.com/wolfcomp/BasedArtisanReleaseFix"
 }

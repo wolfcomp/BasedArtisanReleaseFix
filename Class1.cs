@@ -70,8 +70,11 @@ namespace BasedArtisanReleaseFix
                 if (instance == null) throw new Exception("Failed to get DalamudInterface instance");
 
                 var pluginType = plugin.GetType();
+                
+                if (!GetAssemblyFromLoadContext("Artisan", localPlugin, out var artisanAssembly))
+                    throw new Exception("Failed to get Artisan assembly");
 
-                if (!(bool)pluginType.Assembly.GetType("DalamudInfo")!.GetField("IsStaging", BindingFlags.Static | BindingFlags.Public)!.GetValue(null)!)
+                if (!(bool)artisanAssembly.GetTypes().First(t => t is { Name: "DalamudInfo", Namespace: "Artisan.RawInformation" }).GetField("IsStaging", BindingFlags.Static | BindingFlags.Public)!.GetValue(null)!)
                 {
                     if (silent) return;
                     Log!.Info(AlreadyFixed);
