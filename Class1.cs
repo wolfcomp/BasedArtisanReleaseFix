@@ -20,29 +20,31 @@ namespace BasedArtisanReleaseFix
         private static uint[] _crafterIds = [];
         public Main(IDalamudPluginInterface pluginInterface, ICommandManager commandManager, IPluginLog log, IFramework framework, IChatGui chat, IClientState state, IDataManager data)
         {
-            var commandInterface = new CommandInfo((_, args) =>
-            {
-                if (args == "fix")
-                    FixArtisan();
-                else
-                    _installedPluginsList = null;
-            })
-            {
-                HelpMessage = "fix - Fix Artisan\nclearfix - Clear installed plugins list and fix Artisan"
-            };
-            commandManager.AddHandler("/barf", commandInterface);
-            Instance = pluginInterface;
-            CommandManager = commandManager;
-            Log = log;
-            Framework = framework;
-            Chat = chat;
-            State = state;
-            State.ClassJobChanged += StateOnClassJobChanged;
-            foreach (var classJob in data.GetExcelSheet<ClassJob>())
-            {
-                if (classJob.ClassJobCategory.RowId == 33) _crafterIds = _crafterIds.Append(classJob.RowId).ToArray();
-            }
-            FixArtisan(true);
+            chat.Print("BasedArtisanReleaseFix loaded but no longer needed.");
+
+            // var commandInterface = new CommandInfo((_, args) =>
+            // {
+            //     if (args == "fix")
+            //         FixArtisan();
+            //     else
+            //         _installedPluginsList = null;
+            // })
+            // {
+            //     HelpMessage = "fix - Fix Artisan\nclearfix - Clear installed plugins list and fix Artisan"
+            // };
+            // commandManager.AddHandler("/barf", commandInterface);
+            // Instance = pluginInterface;
+            // CommandManager = commandManager;
+            // Log = log;
+            // Framework = framework;
+            // Chat = chat;
+            // State = state;
+            // State.ClassJobChanged += StateOnClassJobChanged;
+            // foreach (var classJob in data.GetExcelSheet<ClassJob>())
+            // {
+            //     if (classJob.ClassJobCategory.RowId == 33) _crafterIds = _crafterIds.Append(classJob.RowId).ToArray();
+            // }
+            // FixArtisan(true);
         }
 
         private void StateOnClassJobChanged(uint classjobid)
